@@ -29,7 +29,7 @@ $_SESSION['classe3']=$classe3;
     <title>S-control, Aceuil personnel administrative</title>
   </head>
 
-  <body class="container-fluid"> lll
+  <body class="container-fluid">
 	  <div class="col" id="bar">
 		  <div id="profile">
 			  <p class="info_profile nom">Nom: <?php  //Insertion du Nom du professeur
