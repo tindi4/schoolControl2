@@ -1,0 +1,88 @@
+/* CSS Document */
+@font-face{
+		font-family: 'bold';
+		src: url("../font/Comfortaa-Bold.ttf");
+	}
+@font-face{
+		font-family: 'light';
+		src: url("../font/Comfortaa-Light.ttf");
+	}
+@font-face{
+		font-family: 'regular';
+		src: url("../font/Comfortaa-Regular.ttf");
+	}
+
+#save_student, #save_teacher{
+	text-align: center;
+	box-shadow: 1px 1px 9px 1px;
+	margin: 20%;
+	display: none;
+	position: fixed;
+	top: -33%;
+	left: 30%;
+	background-color:#E8E8E8;
+	height: 70%;
+	overflow: scroll;
+}
+
+#save_eleve p label, #save_enseignent p label{
+	display: block;
+	text-align: center;
+	font-family: regular;
+	margin-bottom: 2%;
+	margin-top: 2%;
+
+}
+
+#save_student h3, #save_teacher h3{
+	font-family: bold;
+}
+
+#save_eleve input, #save_enseignent input{
+	display: block;
+	border-top:none;
+	border-left: none;
+	border-right:none;
+	border-bottom: 2px solid #00B3FF;
+	text-align: center;
+	margin-left: 15%;
+	width: 70%;
+	background-color: #E8E8E8;
+}
+
+#bt_save_eleve, #bt_save_teacher {
+    background-color:#315CFF;
+	color:white;
+	border:3px solid #315CFF;
+}
+
+#search2{
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 20px;
+}
+
+.ui-autocomplete {
+	position: absolute;
+	top: 0;
+	left: 0;
+	cursor: default;
+	list-style-type: none;
+	background-color: white;
+	border-top: none;
+	color:black;
+	font-family: regular;
+}
+
+.ui-autocomplete li:hover{
+	background-color: #0034FC;
+	border:1px solid white;
+	color: white;
+}
+
+.cours{
+	font-family: light;
+	color:white;
+	background-color: #00DC04;
+	margin-top: -15px;
+}

@@ -1,0 +1,62 @@
+/* CSS Document */
+@font-face{
+		font-family: 'bold';
+		src: url("http://192.168.137.1/resources/font/Comfortaa-Bold.ttf");
+	}
+@font-face{
+		font-family: 'light';
+		src: url("http://192.168.137.1/resources/font/Comfortaa-Light.ttf");
+	}
+@font-face{
+		font-family: 'regular';
+		src: url("http://192.168.137.1/resources/font/Comfortaa-Regular.ttf");
+	}
+
+.body{
+	background-color:#181616;
+}
+
+p{
+	text-align: center;
+}
+
+.connex_box{
+	border: 3px solid white;
+	background-color: white;
+	box-shadow: 1px 1px 9px 1px;
+	/*border-radius: 9px;*/
+	margin-left: 30%;
+	margin-right: 30%;
+	margin-top: 10%;
+	margin-bottom: 20%;
+
+}
+
+input:focus{
+	outline: transparent;
+}
+
+#id_name, #id_password{
+	border-radius: 5px;
+	border: 2px solid #1a1b1b;
+	color: #1a1b1b;
+
+}
+
+.connex_box_desc{
+	font-family: bold,sans-serif;
+	font-size: 30px;
+	color: #1a1b1b;
+}
+
+.submit_connex_prof{
+	color:#7B7B7B;
+	background-color: white;
+	border: 3px solid white;
+	box-shadow: 1px 1px 9px 1px;
+	border-radius: 5px;
+}
+
+footer p{
+	color: #6A6A6A;
+}
