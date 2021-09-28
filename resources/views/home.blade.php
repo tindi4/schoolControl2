@@ -29,7 +29,7 @@ $_SESSION['classe3']=$classe3;
     <title>S-control, Aceuil personnel administrative</title>
   </head>
 
-  <body class="container-fluid">
+  <body class="container-fluid"> lll
 	  <div class="col" id="bar">
 		  <div id="profile">
 			  <p class="info_profile nom">Nom: <?php  //Insertion du Nom du professeur
@@ -37,7 +37,7 @@ $_SESSION['classe3']=$classe3;
                 foreach ($professeur as $value){
                     echo $value->nom;
                 }
-            }   kkkk  
+            }  
 			  ?></p>
 			  <p class="info_profile prenom">Prenom: <?php  //Insertion du prenom du professeur
 			   if (isset($professeur)) {
