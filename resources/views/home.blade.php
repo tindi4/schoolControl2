@@ -37,7 +37,7 @@ $_SESSION['classe3']=$classe3;
                 foreach ($professeur as $value){
                     echo $value->nom;
                 }
-            }   k
+            }   kkk
 			  ?></p>
 			  <p class="info_profile prenom">Prenom: <?php  //Insertion du prenom du professeur
 			   if (isset($professeur)) {
