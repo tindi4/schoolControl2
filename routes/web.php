@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,3 +24,9 @@ Route::post('/api/createPerson', 'personControler@savePerson'); //Requete enregi
 
 //Requete par rapport aux eleve
 Route::post('/loginInterface/listStudent', 'GetStudentController@getStudentList'); //Requete pour recuperer la list d'etudiant
+
+//Reqquette pour recuperer le nombre d'enegistrement de note precedent pour une matiere donnee
+Route::post('/loginInterface/get-passe-save', 'NotesController@getNoteNb');
+
+//Requette pour enregistrer les notes
+Route::post('/loginInterface/sendNotes', 'NotesController@saveNote');

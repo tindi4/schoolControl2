@@ -25,12 +25,13 @@ class GetStudentController extends Controller
         if($results!=NULL){ // Verifier si le resultat est bien sortie
             $i=0;
             foreach($results as $identification){
-                $nom[$i]=$identification->nom.' '.$identification->prenom; // On enregistre dans un tableau de une colonne le nom
+                $nom[$i]=$identification->nom; // On enregistre dans un tableau de une colonne le nom
+                $nick[$i]=$identification->prenom;
                 //des etudiants.
                 $i++;
             }
 
-            return response()->json(['answer' => 'Good', 'name'=>$nom]); // On retourne le resultat au script de controle
+            return response()->json(['answer' => 'Good', 'name'=>$nom, 'nick'=>$nick]); // On retourne le resultat au script de controle
 
         }
         else{

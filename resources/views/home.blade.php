@@ -140,11 +140,10 @@ $_SESSION['classe3']=$classe3;
 
 	  </div>	<!--fin de la parti dynamique-->
 	</div>  
-	  
   </body>
     <script src="http://192.168.137.1/SControl/resources/js/jquery-ui.min.js"></script> 
 	<script src="http://192.168.137.1/SControl/resources/js/jquery-3.6.0.js"></script>
 	<script src="http://192.168.137.1/SControl/resources/bootstrap/js/bootstrap.min.js"></script>
 	<script src="http://192.168.137.1/SControl/resources/js/home.js"></script>
-	<script src="http://192.168.137.1/SControl/resources/js/note.js"></script>
+	<!--<script src="http://192.168.137.1/SControl/resources/js/note.js"></script>-->
 </html>

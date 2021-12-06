@@ -1,4 +1,5 @@
 // JavaScript Document
+var typeNote;
 $(function(){
 
 	/*script for secretaire outils*/
@@ -16,10 +17,10 @@ $(function(){
 	var cours_t;
 	var cours = [
     "SVT",
-    "Science-Physique",
+    "Science_Physique",
     "Mathematique",
     "ECM",
-    "Histoire-Geographie",
+    "Histoire_Geographie",
 	"Francais",
 	"Anglais",
 	"EPS"
@@ -63,9 +64,10 @@ $(function(){
 
 	});
 
-	$('.item1s').click(function(){
-
+	$('.item1s').click(function(){  //Notes Interrogation
+		//typeNote=1;
 		if(modal!=3){
+					
 		$('#display_content').load('http://192.168.137.1/SControl/resources/views/enter_note.blade.php');
 		modal=3;
 		}
@@ -75,7 +77,7 @@ $(function(){
 	});
 
 	$('.item2s').click(function(){
-
+		//typeNote=2;
 		if(modal!=3){
 		$('#display_content').load('http://192.168.137.1/SControl/resources/views/enter_note.blade.php');
 		modal=3;
@@ -86,7 +88,7 @@ $(function(){
 	});
 
 	$('.item3s').click(function(){ /*button ouvertur enregistrement eleves*/
-
+		//typeNote=3;
 		if(modal!=3){
 		document.getElementById("save_student").style.display="block"; /*afficher l'enregistreur eleves*/
 		modal=3;
@@ -97,6 +99,7 @@ $(function(){
 	});
 
 	$('.item4s').click(function(){
+		//typeNote=4;
 		if(modal!=3){
 		document.getElementById("save_teacher").style.display="block"; /*afficher l'enregistreur eleves*/
 		modal=3;

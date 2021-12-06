@@ -13,7 +13,7 @@ class CreateHGeoNoteTable extends Migration
      */
     public function up()
     {
-        Schema::create('_h_geo_note', function (Blueprint $table) {
+        Schema::create('his_geo_note', function (Blueprint $table) {
             $table->id();
             $table->integer('idEleve');  //Here DS mean devoir surveille and Comp mean subfinal or final exam
             $table->integer('DSone');
@@ -31,7 +31,7 @@ class CreateHGeoNoteTable extends Migration
             $table->integer('Compone');
             $table->integer('Comptwo');
             $table->integer('Comptree');
-            $table->table('Compfour');
+            $table->integer('Compfour');
             $table->timestamps();
         });
     }

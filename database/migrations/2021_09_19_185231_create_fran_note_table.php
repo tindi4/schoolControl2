@@ -31,7 +31,7 @@ class CreateFranNoteTable extends Migration
             $table->integer('Compone');
             $table->integer('Comptwo');
             $table->integer('Comptree');
-            $table->table('Compfour');
+            $table->integer('Compfour');
             $table->timestamps();
         });
     }

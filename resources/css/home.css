@@ -195,6 +195,12 @@ h3, h5{
 
 /*style for enter note box*/
 
+
+#selectTypeNote{
+	text-align: center;
+	font-size: 20px;
+}
+
 #enter_box{
 	margin-top: 5%;
 	height: 100%;
