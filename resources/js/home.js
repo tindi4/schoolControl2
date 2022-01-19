@@ -25,7 +25,9 @@ $(function(){
 
 	$('.nav_p:nth-child(1)').click(function(){
 
-		$('#display_content').load('http://192.168.137.1/SControl/resources/views/home_refresh.blade.php');
+		//$('#display_content').load('http://192.168.137.1/SControl/resources/views/home_refresh.blade.php');
+		location.reload();
+
 
 	});
 

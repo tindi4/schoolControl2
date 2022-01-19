@@ -43,4 +43,5 @@
 	<script src="http://192.168.137.1/SControl/resources/js/jquery-3.6.0.js"></script>
 	<script src="http://192.168.137.1/SControl/resources/js/home.js"></script>
 	<script src="http://192.168.137.1/SControl/resources/js/note.js"></script>
+	<!--<script src="http://192.168.137.1/SControl/resources/js/note.js"></script>-->
 </html>

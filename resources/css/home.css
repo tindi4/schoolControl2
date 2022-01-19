@@ -206,7 +206,7 @@ h3, h5{
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	margin-left: 300px;
+	margin-left: 250px;
 }
 
 #select{
@@ -228,6 +228,11 @@ h3, h5{
 #old_note{
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
+	width:70%;
+	background-color:white;
+	border: 1px solid white;
+	box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.432);
 }
 
 #old_note p{
@@ -235,7 +240,7 @@ h3, h5{
 }
 
 .note{
-	box-shadow: 1px 1px 5px 1px black;
+	box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.466);
 	width: 80px;
 	text-align: center;
 	border-radius: 10px;
