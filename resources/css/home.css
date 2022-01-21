@@ -215,6 +215,12 @@ h3, h5{
 	font-family: regular;
 }
 
+#typeNote{
+	display: flex;
+	flex-direction: row;
+	font-family: bold;
+}
+
 #classe{
 	color: red;
 	border: 2px solid red;

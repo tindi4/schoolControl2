@@ -1,4 +1,4 @@
-<?php session_start();
+<?php session_start();  //La generation de ces session permet de cree les valeur du select list matiere
 $_SESSION['classe6']=$classe6;
 $_SESSION['classe5']=$classe5;
 $_SESSION['classe4']=$classe4;

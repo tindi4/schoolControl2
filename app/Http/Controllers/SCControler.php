@@ -121,7 +121,10 @@ class SCControler extends Controller
                                         ]);
 
                         if($results!=NULL){
-                            session(['classe6'=>$Cours6]);
+                            session(['classe6'=>$Cours6]); //Creation de session pour utiliser cree le select list dans les autres vue
+                            session(['classe5'=>$Cours5]);
+                            session(['classe4'=>$Cours4]);
+                            session(['classe3'=>$Cours3]);
                             return view('home', ['professeur'=>$results, 'classe6'=>$Cours6, 'classe5'=>$Cours5, 'classe4'=>$Cours4,
                         'classe3'=>$Cours3]); //Envoyer au niveau de la vue, les classes du prof et cours.
                         }

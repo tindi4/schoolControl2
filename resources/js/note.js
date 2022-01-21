@@ -13,6 +13,7 @@ $(function(){
 
 	
 	displayPass();
+	
 	$('#ads').click(function(){ //EN cliquant sur ajoute on ouvre la fenetre block et on liste le nom des eleves concerne
 		//Pour trouver ces eleves on recupere dabort la valeur de la liste de selection du cours.
 

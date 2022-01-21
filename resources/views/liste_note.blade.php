@@ -1,3 +1,11 @@
+<?php session_start();
+$classe6=$_SESSION['classe6'];
+$classe5=$_SESSION['classe5'];
+$classe4=$_SESSION['classe4'];
+$classe3=$_SESSION['classe3'];
+
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -11,22 +19,69 @@
 
 <body>
 	<div id="enter_box">
-			<div id="select">
-			  <p>
-				<label for="classe">Matiere :&nbsp;</label>
-				  <select name="classe" id="classe">
-					  <option value="none" selected>----</option>
-					  <option value="5eme">SVT</option>
-				      <option value="6eme">ECM</option>
-				  </select>
-				</p>
-			</div>
-			<div id="old_note">
-				<p id="ads"><img alt="ads" src="resources/img/ads.png" width="25px"></p>
-				<p class="note">DC1</p>
-				<p class="note">DC2</p>
-				<p class="note">DS1</p>
-			</div>
+	<div id="select">
+            <p>
+                <label for="classe">Matiere :&nbsp;</label>
+                <select name="classe" id="classe">
+                    <optgroup id="6eme" label="6eme">
+                        <?php  //Charger les cours de la classe de 6eme
+				  if(isset($classe6)&&($classe6!=NULL)){
+					  foreach($classe6 as $value){ ?>
+                        <option value="<?php echo $value->matiere ?>"><?php echo $value->matiere ?></option>
+                        <?php
+					  }
+				  }
+				  ?>
+                    </optgroup>
+
+                    <optgroup id="5eme" label="5eme">
+                        <?php  //Charger les cours de la classe de 5eme
+				  if(isset($classe5)&&($classe5!=NULL)){
+					  foreach($classe5 as $value){ ?>
+                        <option value="<?php echo $value->matiere ?>"><?php echo $value->matiere ?></option>
+                        <?php
+					  }
+				  }
+				  ?>
+                    </optgroup>
+
+                    <optgroup id="4eme" label="4eme">
+                        <?php  //Charger les cours de la classe de 4eme
+				  if(isset($classe4)&&($classe4!=NULL)){
+					  foreach($classe4 as $value){ ?>
+                        <option value="<?php echo $value->matiere ?>"><?php echo $value->matiere ?></option>
+                        <?php
+					  }
+				  }
+				  ?>
+                    </optgroup>
+
+                    <optgroup id="3eme" label="3eme">
+                        <?php  //Charger les cours de la classe de 3eme
+				  if(isset($classe3)&&($classe3!=NULL)){
+					  foreach($classe3 as $value){ ?>
+                        <option value="<?php echo $value->matiere ?>"><?php echo $value->matiere ?></option>
+                        <?php
+					  }
+				  }
+				  ?>
+                    </optgroup>
+
+                </select>
+            </p>
+        </div>
+		<div id="typeNote">
+		    <input type="radio" id="interro" name="typeNote" value="interro">
+            <label for="interro">Interrogations</label><br>
+            <input type="radio" id="devoir" name="typeNote" value="devoir">
+            <label for="devoir">Devoirs</label><br>
+            <input type="radio" id="compo" name="typeNote" value="compo">
+            <label for="compo">Compositions</label>
+		</div>
+		<div id="old_note">
+            <!--<p id="ads"><img alt="ads" src="http://192.168.137.1/SControl/resources/img/ads.png" width="25px"></p>-->
+
+        </div>
 			<div id="enter_note">
 				<div id="close_button">
 				  <p><img alt="close" src="resources/img/close.png" width="30px"></p>
@@ -51,8 +106,6 @@
 		</div>
 
 </body>
-    <script src="http://192.168.137.1/SControl/resources/js/jquery-ui.min.js"></script>
-    <script src="http://192.168.137.1/SControl/resources/js/jquery-3.6.0.js"></script>
 	<script src="http://192.168.137.1/SControl/resources/js/liste_note.js"></script>
 </html>
 
