@@ -5,7 +5,7 @@ var lister=0;
 $(function(){
 	
 	//$('#ads').hide();
-	alert("list Note");
+	//alert("list Note");
 
 	//Chargement de la select matiere se fait avec les variable de session au debut de list_note>blade
 	
@@ -14,7 +14,7 @@ $(function(){
 
 	$(document).on('click', '.note', function(){ //EN cliquant sur ajoute on ouvre la fenetre block et on liste le nom des eleves concerne
 		//Pour trouver ces eleves on recupere dabort la valeur de la liste de selection du cours.
-alert('test');
+        //alert('test');
 		if(lister==0){ //Verifier si il y a une feuille de saisi en cours 
 
 		//Verification de la classe selectionne
@@ -28,7 +28,13 @@ alert('test');
 		  var classe = $(this).text(); //recuperer le rang de type de note cliquer
 		  var range =  classe.match(/(\d+)/);  //recuperer le nombre numerique contenu dans la classe
 		  noteRange = range[0];
-		  alert(noteRange);
+		  //alert(noteRange);
+
+		  //initialisation importante
+		  document.getElementById("noteList").style.display="none";
+		  $('.eleveName').remove();
+		  $('.note_line').remove();
+		  $("#selectTypeNote").html("");
 
 		if(coursObject.parent()[0].id=="6eme"){ // SI la matiere choisie est celui de la classe de 6eme
 			 name=getEleve("6");
@@ -45,6 +51,20 @@ alert('test');
 		if(coursObject.parent()[0].id=="3eme"){ // SI la matiere choisie est celui de la classe de 3eme
 			 name=getEleve("3");
 		}
+
+		if(savedNote==1){
+			$("#selectTypeNote").append('<p class="noteTitle">Notes Interrogation N0 '+(noteRange)+'</p>');
+			}
+			if(savedNote==2){
+				$("#selectTypeNote").append('<p class="noteTitle">Notes Devoir surveiller N0 '+(noteRange)+'</p>');
+				}
+				if(savedNote==3){
+					$("#selectTypeNote").append('<p class="noteTitle">Notes Composition N0 '+(noteRange)+'</p>');
+					}
+					if(savedNote==4){
+						//$("#selectTypeNote").append('<p class="noteTitle">Verification des notes '+dec+'</p>');
+						}
+
 	}
 	else{
 		alert("Fermer ou valider la feuille de saisie actuel dabort !"); //DesingAlert
@@ -54,38 +74,46 @@ alert('test');
 
 	$( "#classe" ).change(function() {
 		
-		document.getElementById("enter_note").style.display="none";
+		document.getElementById("noteList").style.display="none";
 		$('.eleveName').remove();
 		$(".note").remove();
-		alert("ddd");
+		//alert("ddd");
 		displayPass();
 	  });
 
 	$("#interro").change(function(){
-		alert("change radio")
+		//alert("change radio")
 		$('.eleveName').remove();
 		$(".note").remove();
-		document.getElementById("enter_note").style.display="none";
+		document.getElementById("noteList").style.display="none";
 		savedNote=1;
 		displayPass();
 	});
 	
 	$("#devoir").change(function(){
-		alert("change radio")
+		//alert("change radio")
 		$('.eleveName').remove();
 		$(".note").remove();
-		document.getElementById("enter_note").style.display="none";
+		document.getElementById("noteList").style.display="none";
 		savedNote=2;
 		displayPass();
 	});
 
 	$("#compo").change(function(){
-		alert("change radio")
+		//alert("change radio")
 		$('.eleveName').remove();
 		$(".note").remove();
-		document.getElementById("enter_note").style.display="none";
+		document.getElementById("noteList").style.display="none";
 		savedNote=3;
 		displayPass();
+	});
+
+	$('#close_button').click(function(){  //Evenement appuis sur close_button
+		
+		document.getElementById("noteList").style.display="none";
+		$('.eleveName').remove();
+		$('.note_line').remove();
+		//$(".note").remove(); the old note view
 	});
 	
 
@@ -112,7 +140,7 @@ function displayPass(){
    if(coursObject.parent()[0].id=="3eme"){ // SI la matiere choisie est celui de la classe de 3eme
 		classe_=3;
    }
-	alert(nbr)
+	//alert(nbr)
 	$.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -135,9 +163,9 @@ function displayPass(){
 				var decc=data.nbr;
 				//$("#ads").show();
 				if(dec==0){
-					alert('Aucune note enregistrer, Veuillez cliquer sur le signe (+) pour ajouter une note'); //DesignAlert
+					alert('Aucune note enregistrer, Rendez vous dans le menu Acceuil pour ajouter une note'); //DesignAlert
 				}
-				while(dec!=0){
+				while(dec!=0){ //alert(dec);
 
 					if(nbr==1){
 						$("#old_note").append('<p class="note '+dec+'">Interro '+dec+'</p>');
@@ -153,20 +181,7 @@ function displayPass(){
 									}	
 					dec--;
 				}
-				//Customisation de la feuille d'entrer
-				if(nbr==1){
-					$("#selectTypeNote").append('<p class="noteTitle">Notes Interrogation N0 '+(decc)+'</p>');
-					}
-					if(nbr==2){
-						$("#selectTypeNote").append('<p class="noteTitle">Notes Devoir surveiller N0 '+(decc)+'</p>');
-						}
-						if(nbr==3){
-							$("#selectTypeNote").append('<p class="noteTitle">Notes Composition N0 '+(decc)+'</p>');
-							}
-							if(nbr==4){
-								//$("#selectTypeNote").append('<p class="noteTitle">Verification des notes '+dec+'</p>');
-								}
-		
+				
 			}
 			else if(data.answer=='full'){
 				var dec =data.nbr;
@@ -187,11 +202,12 @@ function displayPass(){
 									}	
 					dec--;
 				}
+
 				$("#old_note").append('<p class="note" style="color:red">Limite de note atteinte!</p>');
-				alert('Limite enregistrement atteint. Veuillez effacer une note et reesayer.'); //DesignAlert
+				alert('Vous avez atteint la limite d\'enregistrement disponible.Vous pouvez effacer une fiche de note pour enregistrer une nouvelle.'); //DesignAlert
 			}
 			else if(data.answer=='empty'){
-				alert('Aucune note entrer. Veuillez ajouter une note en cliquant sur (+)'); //DesignAlert
+				alert('Aucune note enregistrer, Rendez vous dans le menu Acceuil pour ajouter une note'); //DesignAlert
 			}
 			else{
 				alert("Erreur interne du serveur. Veuillez contacter le developper SVP."); //DesingAlert
@@ -200,7 +216,7 @@ function displayPass(){
 
 }
 
-function getEleve(classeValue){ //Fonction servant a lister la classe
+function getEleve(classeValue){ //Fonction servant a lister la classe et les note enregistrers
 
 	
       
@@ -216,15 +232,17 @@ function getEleve(classeValue){ //Fonction servant a lister la classe
         data: {
             'classe': classeValue,
 			'type':savedNote,
-			'range':noteRange
+			'range':noteRange,
+			'cours':$("option:selected").val()
         },
         dataType: 'json',
         success: function(data){
             if(data.answer=='Good'){
 				ads=1;
-				names=data.name;
+				names=data.nom;
 				nicks=data.nick;
-				listEleve(names, nicks);
+				notes=data.note;
+				listEleve(names, nicks, notes);
 				
 			}
 
@@ -235,14 +253,15 @@ function getEleve(classeValue){ //Fonction servant a lister la classe
 
 }
 
-function listEleve(name, nick){
+function listEleve(name, nick, notes){
 	//alert(name[0]); for debogage manuel
-	document.getElementById("enter_note").style.display="block";
+	document.getElementById("noteList").style.display="block";
 	$(".head").after("<div class=\"eleveName\"></div>"); //Element parent flexbox recevant la list nom eleve
 
 	for(let i=0; i<name.length ;i++){
 
-		$(".eleveName").append("<div class=\"note_line\"><div class=\"nameList\">"+name[i]+" "+nick[i]+" :</div><div><input type=\"number\" class=\"note_val name"+i+"\" name=\"note_val\" placeholder=\"00\" maxlength=\"5\" /></div></div>");
+		//alert(notes[i]);
+		$(".eleveName").append("<div class=\"note_line\"><div class=\"nameList\">"+name[i]+" "+nick[i]+" :</div><div><input type=\"number\" class=\"note_val name"+i+"\" name=\"note_val\" placeholder=\"00\" maxlength=\"5\" value="+notes[i]+" /></div></div>");
 		nbrName++;
 	}
 	

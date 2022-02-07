@@ -28,5 +28,7 @@ Route::post('/loginInterface/listStudent', 'GetStudentController@getStudentList'
 //Reqquette pour recuperer le nombre d'enegistrement de note precedent pour une matiere donnee
 Route::post('/loginInterface/get-passe-save', 'NotesController@getNoteNb');
 
-//Requette pour enregistrer les notes
+//Requette pour enregistrer les notes ou les lister
 Route::post('/loginInterface/sendNotes', 'NotesController@saveNote');
+Route::post('/loginInterface/listStudent-and-note', 'NotesController@listNote');  //Demande de listage de note
+

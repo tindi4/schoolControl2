@@ -82,19 +82,23 @@ $classe3=$_SESSION['classe3'];
             <!--<p id="ads"><img alt="ads" src="http://192.168.137.1/SControl/resources/img/ads.png" width="25px"></p>-->
 
         </div>
-			<div id="enter_note">
+			<div id="noteList">
 				<div id="close_button">
-				  <p><img alt="close" src="resources/img/close.png" width="30px"></p>
+				  <p><img alt="close" src="http://192.168.137.1/SControl/resources/img/close.png" width="30px"></p>
 				</div>
 				<div id="enter_zone">
+				    <div id="selectTypeNote">
+                
+				    </div>
+
 					<div class="head">
 						<h3>Nom</h3>
 						<h3>Notes</h3>
 					</div>
-					<p> <!-- Charger cette partie en recuperant la liste des eleve concerne par -->
+					<!-- <p> ||Paertie de listage des notes dynamique avec Jquerry
 						<label for="note_val">Nom eleve :</label>
 				        <input type="text" name="note_val" id="note_val" placeholder="00" maxlength="4" />
-		            </p>
+		            </p> -->
 
 					<div id="save_button">
 			          <p>

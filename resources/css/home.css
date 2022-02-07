@@ -278,6 +278,14 @@ h3, h5{
 	display: none;
 }
 
+#noteList{
+	margin-top: 50px;
+	margin-left: 0%;
+	box-shadow: 1px 1px 9px 1px;
+	width: 60%;
+	display: none;
+}
+
 #close_button, #close_button_teacher{
 	text-align: right;
 	margin-top: -16px;

@@ -339,4 +339,117 @@ class NotesController extends Controller
         }
     }
 
+    public function listNote(Request $request){
+
+        if(isset($request)){
+            $rangNote=$request->post('range'); //Enieme note selectionner
+            $typeNote=$request->post('type'); //Type 1, 2, 3
+            $cours=$request->post('cours');
+            $classe=$request->post('classe');
+
+            //First get the name and ID of the concerned student
+            $student=getStudentList($classe);
+            $id=$student[0];
+            $nom=$student[1];
+            $nick=$student[2];
+            $up=0;
+            $notes;
+
+            while($up<=(sizeof($id)-1)){
+
+                //Rcuperations des notes concerner
+                if($typeNote==1){ //Interro
+                $req=DB::select(/** @lang text */ 'select interro'.$rangNote.' from '.$cours.''.$classe.' where idEleve=:id', 
+                    [
+                        'id'=>$id[$up]
+                    ]);
+
+                    //Charger la note dans une variable
+                    $type='interro'.$rangNote;
+                    foreach($req as $note){
+                        $notes[$up]=$note->$type;
+                    }
+
+                $up++;
+
+                if($up>(sizeof($id)-1)){
+                    return response()->json(['answer'=>'Good','nom'=>$nom, 'nick'=>$nick, 'note'=>$notes]);
+                }
+            }
+
+            if($typeNote==2){ //Devoir
+                $req=DB::select(/** @lang text */ 'select DS'.$rangNote.' from '.$cours.''.$classe.' where idEleve=:id', 
+                    [
+                        'id'=>$id[$up]
+                    ]);
+
+                    //Charger la note dans une variable
+                    $type='DS'.$rangNote;
+                    foreach($req as $note){
+                        $notes[$up]=$note->$type;
+                    }
+
+                $up++;
+
+                if($up>(sizeof($id)-1)){
+                    return response()->json(['answer'=>'Good','nom'=>$nom, 'nick'=>$nick, 'note'=>$notes]);
+                }
+            }
+
+            if($typeNote==3){ //Compo
+                $req=DB::select(/** @lang text */ 'select Comp'.$rangNote.' from '.$cours.''.$classe.' where idEleve=:id', 
+                    [
+                        'id'=>$id[$up]
+                    ]);
+
+                    //Charger la note dans une variable
+                    $type='Comp'.$rangNote;
+                    foreach($req as $note){
+                        $notes[$up]=$note->$type;
+                    }
+
+                $up++;
+
+                if($up>(sizeof($id)-1)){
+                    return response()->json(['answer'=>'Good','nom'=>$nom, 'nick'=>$nick, 'note'=>$notes]);
+                }
+            }
+        }
+        }
+
+    }
+
+}
+
+function getStudentList($classe){ //Function recevant en request la classe demande
+
+    if(isset($classe)){
+
+        $ClasseNo=$classe;  //Recuperation de la valeur numerique de la classe
+
+        $results = DB::select(/** @lang text */ 'select id, nom, prenom from eleve where classe = :classe',
+            [
+                'classe' => $ClasseNo
+            ]);
+    
+
+    if($results!=NULL){ // Verifier si le resultat est bien sortie
+        $i=0;
+        foreach($results as $identification){
+            $id[$i]=$identification->id;
+            $nom[$i]=$identification->nom; // On enregistre dans un tableau de une colonne le nom
+            $nick[$i]=$identification->prenom;
+            //des etudiants.
+            $i++;
+        }
+
+        return array($id,$nom,$nick);
+
+
+    }
+    else{
+
+    }
+}
+
 }
