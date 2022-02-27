@@ -91,6 +91,13 @@ $classe3=$_SESSION['classe3'];
                 
 				    </div>
 
+					<div id="alertChangeNote">
+			<h3>Modifer cette note</h3>
+			<input type="number" placeholder="00" maxlength="5"/>
+			<button>Valider</button>
+		</div>
+
+
 					<div class="head">
 						<h3>Nom</h3>
 						<h3>Notes</h3>
@@ -108,7 +115,7 @@ $classe3=$_SESSION['classe3'];
 				</div>
 			</div>
 		</div>
-
+		
 </body>
 	<script src="http://192.168.137.1/SControl/resources/js/liste_note.js"></script>
 </html>

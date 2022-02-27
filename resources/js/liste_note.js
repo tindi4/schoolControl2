@@ -6,6 +6,11 @@ $(function(){
 	
 	//$('#ads').hide();
 	//alert("list Note");
+	//Initialisation
+	document.getElementById("noteList").style.display="none";
+		$('.eleveName').remove();
+		$('.note_line').remove();
+		savedNote=0;
 
 	//Chargement de la select matiere se fait avec les variable de session au debut de list_note>blade
 	
@@ -115,6 +120,32 @@ $(function(){
 		$('.note_line').remove();
 		//$(".note").remove(); the old note view
 	});
+
+	$(document).on('mouseenter', '.noInput',function(event){
+
+		//var classe = $(this).attr('class'); //recuperer le nom de la class
+		//var range =  classe.match(/(\d+)/);  //recuperer le nombre numerique contenue dans le nom de classe pour identifier l'eleve
+		//eleveId = range[0]; //recuperation effective
+		top = event.pageX;
+		left= event.pageY;
+		//alert(event.pageX);
+		//hoverOnNoteList(eleveId, event.pageX, event.pageY);
+
+		$("#alertChangeNote").css({
+			position:"absolute",
+			top:event.pageY,
+			left:event.pageX,
+			border:"1px solid white",
+			'background-color':"white",
+			'color':"blue",
+			'box-shadow': "1px 1px 9px 1px",
+			display:"block"
+		});		
+		});
+
+		$(document).on('mouseleave', '.noInput', function(){
+			$("#alertChangeNote").hide();
+			});
 	
 
 });
@@ -261,8 +292,13 @@ function listEleve(name, nick, notes){
 	for(let i=0; i<name.length ;i++){
 
 		//alert(notes[i]);
-		$(".eleveName").append("<div class=\"note_line\"><div class=\"nameList\">"+name[i]+" "+nick[i]+" :</div><div><input type=\"number\" class=\"note_val name"+i+"\" name=\"note_val\" placeholder=\"00\" maxlength=\"5\" value="+notes[i]+" /></div></div>");
+		$(".eleveName").append("<div class=\"note_line\"><div class=\"nameList\">"+name[i]+" "+nick[i]+" :</div><div><span class=\"note_val noInput name"+i+"\">"+notes[i]+"</span/></div></div>");
 		nbrName++;
 	}
+	
+}
+
+function hoverOnNoteList(eleveIdent, top, left){
+	
 	
 }
