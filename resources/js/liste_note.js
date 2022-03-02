@@ -2,6 +2,8 @@
 var savedNote; //Interro, devoir, compo
 var noteRange;
 var lister=0;
+var changedNote;
+var Time;
 $(function(){
 	
 	//$('#ads').hide();
@@ -130,6 +132,12 @@ $(function(){
 		left= event.pageY;
 		//alert(event.pageX);
 		//hoverOnNoteList(eleveId, event.pageX, event.pageY);
+		changedNote=this;
+		clearTimeout(Time);
+		$(this).css({
+			border:"2px solid red",
+			'background-color':"white"
+		});
 
 		$("#alertChangeNote").css({
 			position:"absolute",
@@ -144,8 +152,43 @@ $(function(){
 		});
 
 		$(document).on('mouseleave', '.noInput', function(){
-			$("#alertChangeNote").hide();
+			//first initialised the hovered note
+			$(changedNote).css({
+				display: "inline-block",
+				width: "60px",
+				border: "2px solid rgba(89, 89, 248, 0.39)",
+				'border-radius': "5px",
+				'background-color':"rgba(89, 89, 248, 0.39)"
 			});
+			Time=setTimeout(function(){ leavingNote(); }, 600);
+		
+			});
+
+			//if user go on chngeAlert panel
+			$(document).on('mouseenter','#alertChangeNote', function(event){
+				clearTimeout(Time);
+				$(changedNote).css({
+					border:"2px solid red",
+					'background-color':"white"
+				});
+				
+
+			});
+
+
+			$(document).on('mouseleave', '#alertChangeNote', function(event){
+				$("#alertChangeNote").hide();
+				
+				$(changedNote).css({
+					display: "inline-block",
+	                width: "60px",
+	                border: "2px solid rgba(89, 89, 248, 0.39)",
+	                'border-radius': "5px",
+					'background-color':"rgba(89, 89, 248, 0.39)"
+				});
+		
+			});
+
 	
 
 });
@@ -301,4 +344,17 @@ function listEleve(name, nick, notes){
 function hoverOnNoteList(eleveIdent, top, left){
 	
 	
+}
+
+function leavingNote(){
+	$("#alertChangeNote").hide();
+	//reinitialised the notelist style
+	$(changedNote).css({
+		display: "inline-block",
+		width: "60px",
+		border: "2px solid rgba(89, 89, 248, 0.39)",
+		'border-radius': "5px",
+		'background-color':"rgba(89, 89, 248, 0.39)"
+	});
+
 }

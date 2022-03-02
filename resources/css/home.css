@@ -344,7 +344,25 @@ h3, h5{
 /*Style pour listeNote*/
 #alertChangeNote{
 	display: none;
+	border-radius: 5px;
+	text-align: center;
+	background-color: whitesmoke;
+	border: none;
 }
+
+#alertChangeNote h3{
+	color: blue;
+	font-family: bold;
+}
+
+#alertChangeNote button{
+	background-color: blue;
+	border: 5px solid blue;
+	color: white;
+	font-weight: bold;
+	margin-bottom: 3px;
+}
+
 .noInput{
 	display: inline-block;
 	width: 60px;
