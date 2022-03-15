@@ -3,6 +3,9 @@ var savedNote; //Interro, devoir, compo
 var noteRange;
 var lister=0;
 var changedNote;
+var eleveId;
+var classe_;
+var eleveNum;
 var Time;
 $(function(){
 	
@@ -125,9 +128,9 @@ $(function(){
 
 	$(document).on('mouseenter', '.noInput',function(event){
 
-		//var classe = $(this).attr('class'); //recuperer le nom de la class
-		//var range =  classe.match(/(\d+)/);  //recuperer le nombre numerique contenue dans le nom de classe pour identifier l'eleve
-		//eleveId = range[0]; //recuperation effective
+		var classe = $(this).attr('class'); //recuperer le nom de la class
+		var range =  classe.match(/(\d+)/);  //recuperer le nombre numerique contenue dans le nom de classe pour identifier l'eleve
+		eleveNum = range[0]; //recuperation effective
 		top = event.pageX;
 		left= event.pageY;
 		//alert(event.pageX);
@@ -187,6 +190,13 @@ $(function(){
 					'background-color':"rgba(89, 89, 248, 0.39)"
 				});
 		
+			});
+
+			$("#changeNoteBt").click(function(){
+				//alert("enter change note click")
+				if(changeNote()){//If true, note is correct
+					changeTheModifiedNote();
+				}
 			});
 
 	
@@ -316,12 +326,49 @@ function getEleve(classeValue){ //Fonction servant a lister la classe et les not
 				names=data.nom;
 				nicks=data.nick;
 				notes=data.note;
+				eleveId=data.id;
 				listEleve(names, nicks, notes);
 				
 			}
 
 			else{
 				alert('Echec de generation de la fiche de note. Verifier si les eleves de la classe de '+classe_+' eme '+ 'sont enregistrer'); //DesignAlert
+			}
+        }});
+
+}
+
+function changeTheModifiedNote(){
+	newNote = $(".note_val").val();
+
+	$.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        type: 'POST',  
+        url: '/SControl/public/loginInterface/changeNotes', 
+        data: {
+            'eleveId': eleveId[eleveNum],
+			'newNote':$(".note_val").val(),
+			'typeNote':savedNote,
+			'classe':classe_,
+			'range':noteRange,
+			'cours':$("option:selected").val()
+        },
+        dataType: 'json',
+        success: function(data){
+            if(data.answer=='Good'){
+				alert('La note de '+nicks[eleveNum]+' '+names[eleveNum]+' a ete mise a jours avec succes.'); //DesignAlert
+				$(changedNote).html(newNote);
+				$(".note_val").val('');
+	
+			}
+
+			else{
+				alert('Echec de mise a jours de la note de '+nicks[eleveNum]+' '+names[eleveNum]+'. Ressayer SVP.'); //DesignAlert
 			}
         }});
 
@@ -341,10 +388,7 @@ function listEleve(name, nick, notes){
 	
 }
 
-function hoverOnNoteList(eleveIdent, top, left){
-	
-	
-}
+
 
 function leavingNote(){
 	$("#alertChangeNote").hide();
@@ -357,4 +401,19 @@ function leavingNote(){
 		'background-color':"rgba(89, 89, 248, 0.39)"
 	});
 
+}
+
+function changeNote(){
+
+	ch=false;
+	if(($(".note_val").val()!='')&&($(".note_val").val()!=null)){
+
+		if((parseFloat($(".note_val").val())>=0)&&(parseFloat($(".note_val").val())<=20)){
+			//alert(ch);
+			//alert(parseFloat($(".name"+next).val()));
+			ch=true;
+		}
+	}
+	//alert(ch);
+	return ch;
 }

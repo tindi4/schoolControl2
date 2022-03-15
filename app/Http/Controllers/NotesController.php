@@ -373,7 +373,7 @@ class NotesController extends Controller
                 $up++;
 
                 if($up>(sizeof($id)-1)){
-                    return response()->json(['answer'=>'Good','nom'=>$nom, 'nick'=>$nick, 'note'=>$notes]);
+                    return response()->json(['answer'=>'Good','nom'=>$nom, 'nick'=>$nick, 'note'=>$notes, 'id'=>$id]);
                 }
             }
 
@@ -392,7 +392,7 @@ class NotesController extends Controller
                 $up++;
 
                 if($up>(sizeof($id)-1)){
-                    return response()->json(['answer'=>'Good','nom'=>$nom, 'nick'=>$nick, 'note'=>$notes]);
+                    return response()->json(['answer'=>'Good','nom'=>$nom, 'nick'=>$nick, 'note'=>$notes,  'id'=>$id]);
                 }
             }
 
@@ -411,10 +411,75 @@ class NotesController extends Controller
                 $up++;
 
                 if($up>(sizeof($id)-1)){
-                    return response()->json(['answer'=>'Good','nom'=>$nom, 'nick'=>$nick, 'note'=>$notes]);
+                    return response()->json(['answer'=>'Good','nom'=>$nom, 'nick'=>$nick, 'note'=>$notes,  'id'=>$id]);
                 }
             }
         }
+        }
+
+    }
+
+    public function changeNote(Request $request){
+
+        if(isset($request)){
+            $rangNote=$request->post('range'); //Enieme note selectionner
+            $typeNote=$request->post('typeNote'); //Type 1, 2, 3
+            $cours=$request->post('cours');
+            $classe=$request->post('classe');
+            $eleveId=$request->post('eleveId');
+            $newNote=$request->post('newNote');
+
+            if($typeNote==1){ //Interro
+               $succes= DB::update(/** @lang text */ 'update '.$cours.$classe.' set interro'.($rangNote).'=:note where idEleve=:id',
+                    [
+                        $newNote,
+                        $eleveId
+                    ]);	
+
+                    //Verifier la reussite
+                if($succes){
+                    return response()->json(['answer'=>'Good']);
+                }
+                else{
+                    return response()->json(['answer'=>'False']);
+                }
+            }
+
+            if($typeNote==2){ //Devoir
+                
+                $succes= DB::update(/** @lang text */ 'update '.$cours.$classe.' set DS'.($rangNote).'=:note where idEleve=:id',
+                     [
+                         $newNote,
+                         $eleveId
+                     ]);	
+ 
+                     //Verifier la reussite ??????/
+                
+                     if($succes!=0){
+                        return response()->json(['answer'=>'Good']);
+                    }
+                    else{
+                        return response()->json(['answer'=>'False']);
+                    }
+                
+             }
+
+             if($typeNote==3){ //Composition
+                $succes= DB::update(/** @lang text */ 'update '.$cours.$classe.' set Comp'.($rangNote).'=:note where idEleve=:id',
+                     [
+                         $newNote,
+                         $eleveId
+                     ]);	
+ 
+                     //Verifier la reussite
+                 if($succes!=0){
+                     return response()->json(['answer'=>'Good']);
+                 }
+                 else{
+                     return response()->json(['answer'=>'False']);
+                 }
+             }
+
         }
 
     }

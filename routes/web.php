@@ -31,4 +31,4 @@ Route::post('/loginInterface/get-passe-save', 'NotesController@getNoteNb');
 //Requette pour enregistrer les notes ou les lister
 Route::post('/loginInterface/sendNotes', 'NotesController@saveNote');
 Route::post('/loginInterface/listStudent-and-note', 'NotesController@listNote');  //Demande de listage de note
-
+Route::post('/loginInterface/changeNotes', 'NotesController@changeNote');  //Demande de changement de note

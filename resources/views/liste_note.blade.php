@@ -94,7 +94,7 @@ $classe3=$_SESSION['classe3'];
 					<div id="alertChangeNote">
 			<h3>Modifer cette note</h3>
 			<input class="note_val" type="number" placeholder="00" maxlength="5"/>
-			<button>Valider</button>
+			<button id="changeNoteBt">Valider</button>
 		</div>
 
 
